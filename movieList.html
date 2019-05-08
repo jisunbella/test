@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>영화 조회</title>
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script><!-- JQuery모듈 로딩 -->
+<script>
+	var url="http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json?key=ccbc51405b469efa52bedab7cbbeb710";
+	//전역변수
+	
+
+	$(function(){
+		
+		$.ajax({
+			type:'GET',
+			url:url, //	위에 url 변수
+			dataType:'json',
+			success:jsonParser
+		});
+		
+
+		function jsonParser(data){
+			var showList = data.movieListResult.movieList;
+				$(showList).each(function(idx, item){
+					document.write("<h2>" + item.movieNm + ", " + item.prdtYear + "</h2>");	
+				});		
+		}
+	});
+	
+</script>
+</head>
+<body>
+	<div id="movie-info">
+
+	</div>
+</body>
+</html>
